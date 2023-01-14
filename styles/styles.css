@@ -105,9 +105,11 @@ img {
 }
 .logo {
     display: block;
+    padding-top: var(--card-set-gap);
+    padding-bottom: var(--card-set-gap);
     
     font-family: var(--accent-font-family);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 18px;
     line-height: calc(24/18);
     letter-spacing: 0.02em;
@@ -543,6 +545,9 @@ img {
 }
 .footer-container {
     display: flex;
+}
+.footer .logo {
+    padding: 0;
 }
 .logo-part-footer {
     font-family: var(--accent-font-family);
