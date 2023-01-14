@@ -13,6 +13,7 @@
       rel="stylesheet"
     />
     <!-- Styles link -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
@@ -64,7 +65,7 @@
       <section class="baner-section overlay">
         <div class="container baner-container">
           <h1 class="banner-title animate__animated animate__bounce">Effective Solutions for Your Business</h1>
-          <button class="banner-btn" type="button">Order Service</button>
+          <button class="banner-btn" type="button" data-modal-open>Order Service</button>
         </div>
       </section>
       <!-- Section our benefits -->
@@ -312,7 +313,7 @@
         </div>
       </section>
       <section class="section clients-section">
-        <h2 class="section-title">Customers</h2>
+        <h2 class="section-title" data-aos="zoom-in">Customers</h2>
         <div class="container">
           <ul class="clients-list list">
             <li class="clients-item">
@@ -408,5 +409,19 @@
         </div>
       </div>
     </footer>
+    <div class="backdrop is-hidden" data-modal>
+      <div class="modal">
+        <button type="button" class="modal-close button" data-modal-close>
+          <svg class="modal-icon" width="8" height="8">
+            <use href="./images/sprite.svg#icon-close"></use>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="./js/modal.js"></script>
   </body>
 </html>

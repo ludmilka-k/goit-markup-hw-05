@@ -11,12 +11,15 @@
     --background-color: #FFFFFF; 
     --background-color-inverter: #2E2F42;
     --background-color-translucent:#F4F4FD;
+    --modal-overlay:  rgba(46, 47, 66, 0.4);
 
     --main-font-family: 'Roboto', sans-serif;
     --accent-font-family: 'Raleway', sans-serif;
 
     --card-set-gap: 24px;
     --outline-style: none;
+
+    --transition: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 body {
     font-family: var(--main-font-family);
@@ -77,6 +80,10 @@ img {
 /* Header styles */
 
 .header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+
     background-color: var(--background-color);
     box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
 }
@@ -128,7 +135,19 @@ img {
     line-height: calc(24/16);
     letter-spacing: 0.02em;
 
-    color: var(--title-text-color)
+    color: var(--title-text-color);
+    transition: color var(--transition);
+    position: relative;
+}
+.nav-link.current::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 2px;
+    background-color: var(--primary-brand-color);
+    left: 0;
+    bottom: 0;
 }
 .nav-link:hover,
 .nav-link :focus {
@@ -144,8 +163,9 @@ img {
     font-size: 16px;
     line-height: calc(24/16);
     letter-spacing: 0.02em;
-
-    color: var(--body-text-color)
+    
+    color: var(--body-text-color);
+    transition: color var(--transition);
 }
 .contact-link:hover,
 .contact-link:focus {
@@ -160,7 +180,6 @@ img {
     padding-top: 120px;
     padding-bottom: 120px;
 }
-/* Overlay */
 .baner-section {
     text-align: center;
     min-height: 600px;
@@ -170,6 +189,7 @@ img {
     padding-top: 192px;
     padding-bottom: 192px;
 }
+/* Overlay */
 .overlay {
     background-image: linear-gradient(rgba(46, 47, 66, 0.7), rgba(46, 47, 66, 0.7)), url(../images/hero-image.jpg);
     background-color: var(--background-color-inverter);
@@ -211,6 +231,7 @@ img {
     border-radius: 4px;
     cursor: pointer;
 
+    transition: background-color var(--transition), box-shadow var(--transition);
 }
 .banner-btn:hover,
 .banner-btn:focus {
@@ -337,9 +358,11 @@ img {
     justify-content: center;
     width: 100%;
     height: 100%;
+
     background-color: var(--primary-brand-color);
     border-radius: 50%;
     cursor: pointer;
+    transition: background-color var(--transition);
 }
 .social-icon {
     /* width: 16px;
@@ -365,19 +388,23 @@ img {
     justify-content: center;
     width: 100%;
     height: 100%;
+
+    color: var(--helper-text-color);
     border: 1px solid var(--helper-text-color);
     border-radius: 4px;
+    transition: border-color var(--transition), color var(--transition);
 }
 .clients-icon {
-    fill: var(--helper-text-color);
+    fill: currentColor;
 }
 .clients-link:hover,
 .clients-link:focus {
     border-color: var(--pressed-state-color);
-}
-.clients-link:hover .clients-icon {
+    color: var(--pressed-state-color);
+} 
+/* .clients-link:hover .clients-icon {
     fill: var(--pressed-state-color);
-}
+} */
 
 /* Portfolio  page styles */
 .section.portfolio-section {
@@ -408,7 +435,9 @@ img {
     padding: 12px 24px;
     cursor: pointer;
     border-radius: 4px;
-    border: 1px solid var(--light-accent-color)
+    border: 1px solid var(--light-accent-color);
+
+    transition: color var(--transition), background-color var(--transition);
 }
 .portfolio-btn:hover,
 .portfolio-btn:focus {
@@ -416,7 +445,6 @@ img {
     background-color:var(--primary-brand-color);
     border: none;
     box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.1), 0px 2px 1px rgba(0, 0, 0, 0.08), 0px 2px 2px rgba(0, 0, 0, 0.12);
-   
 }
 .portfolio-btn:active {
     color: var(--inverter-color);
@@ -444,6 +472,8 @@ img {
     background-color: var(--background-color);
     border-bottom : 1px solid var(--light-accent-color);
     box-shadow: 0px 1px 6px rgba(46, 47, 66, 0.08);
+
+    transition: border var(--transition), box-shadow var(--transition);
 }
 .project-item:hover {
     border-bottom: 0.5px solid var(--background-color-translucent);
@@ -474,6 +504,37 @@ img {
 
     margin-top: 8px;
 }
+/* Overlay slides out from the bottom of the cards  */
+.project-link {
+    display: block;   
+}
+.project-link:hover .text-overlay,
+.project-link:focus .text-overlay {
+    transform: translateY(0);
+}
+.project-thumb {
+    position: relative;
+    overflow: hidden;
+}
+.text-overlay {
+    position: absolute;
+    top: 0;
+
+    font-weight: 400;
+    font-size: 16px;
+    line-height: calc(24/16);
+    letter-spacing: 0.02em;
+
+    color: var(--translucent-color);
+    background-color: var(--primary-brand-color);
+    padding: 40px 32px;
+    height: 100%;
+
+    transform: translateY(100%);
+    transition: transform var(--transition);
+    overflow: auto;
+}
+
 /* Footer styles */
 .footer {
     background-color: var(--background-color-inverter);
@@ -522,9 +583,12 @@ img {
     justify-content: center;
     width: 100%;
     height: 100%;
+
     background-color: var(--body-text-color);
     border-radius: 50%;
     cursor: pointer;
+
+    transition: background-color var(--transition);
 }
 .footer-social-icon {
     width: 24px;
@@ -535,4 +599,59 @@ img {
 .footer-social-link:focus {
     background-color: var(--success-messages-color);
 }
+/* Modal window */
+.backdrop {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--modal-overlay);
 
+    transition: opacity var(--transition), visibility var(--transition);
+}
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 408px;
+    min-height: 576px;
+    background-color: #FCFCFC;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+
+    transform: translate(-50%, -50%) scaleX(1);
+    transition: transform var(--transition);
+}
+.backdrop.is-hidden .modal {
+    transform: translate(-50%, -50%) scaleX(0);
+}
+.modal-close {
+    position: absolute;
+    right: 24px;
+    top: 24px;
+
+    display: flex;
+    width: 24px;
+    height: 24px;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    background-color: var(--light-accent-color);
+   
+    transition: color var(--transition), background-color var(--transition) ;
+    cursor: pointer;
+}
+.modal-close:active {
+    color: var(--inverter-color);
+    background-color: var(--pressed-state-color);
+}
+.modal-icon {
+    fill: currentColor; 
+}
+.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
