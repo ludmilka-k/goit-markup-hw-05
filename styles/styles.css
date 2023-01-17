@@ -162,7 +162,7 @@ img {
     padding-bottom: var(--card-set-gap);
 
     font-family: inherit;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 16px;
     line-height: calc(24/16);
     letter-spacing: 0.02em;
@@ -440,7 +440,7 @@ img {
     border-radius: 4px;
     border: 1px solid var(--light-accent-color);
 
-    transition: color var(--transition), background-color var(--transition);
+    transition: color var(--transition), background-color var(--transition), border var(--transition);
 }
 .portfolio-btn:hover,
 .portfolio-btn:focus {
